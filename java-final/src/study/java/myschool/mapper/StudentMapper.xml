@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="StudentMapper">
+
+	<resultMap id="student" type="study.java.myschool.model.Student">
+		<result property="studno" column="studno" />
+		<result property="name" column="name" />
+		<result property="userid" column="userid" />
+		<result property="grade" column="grade" />
+		<result property="idnum" column="idnum" />
+		<result property="birthdate" column="birthdate" />
+		<result property="tel" column="tel" />
+		<result property="height" column="height" />
+		<result property="weight" column="weight" />
+		<result property="deptno" column="deptno" />
+		<result property="profno" column="profno" />
+	</resultMap>
+	<insert id = "add_student"
+			parameterType= "study.java.myschool.model.Student"
+			useGeneratedKeys= "true"
+			keyProperty= "studno">
+		INSERT INTO student (name, userid, grade, idnum, birthdate, tel, height, weight, profno, deptno) VALUES (#{name},#{userid}, #{grade}, #{idnum}, #{birthdate},  #{tel}, #{height}, #{weight}, #{profno}, #{deptno});
+	</insert> 
+	
+	<delete id ="remove_student" 
+			parameterType ="study.java.myschool.model.Student">
+		DELETE FROM student WHERE deptno=#{deptno};
+	</delete>
+
+	<update id = "edit_student"
+			parameterType= "study.java.myschool.model.Student">
+		UPDATE student SET grade=#{grade}, tel=#{tel} WHERE studno=#{studno};
+	</update>
+	
+	<select id = "get_student_item"
+	 		 parameterType = "study.java.myschool.model.Student"
+	 		 resultMap="student">
+	 	SELECT studno, name, userid, grade, idnum, birthdate, tel, height, weight, profno, deptno FROM student WHERE studno=#{studno};
+	 		 </select>
+	 		 
+	<select id = "get_student_list" 
+	  		  resultMap ="student">
+	 	SELECT studno, name, userid, grade, idnum, birthdate, tel, height, weight, profno, deptno FROM student;
+	</select>
+ 
+</mapper>

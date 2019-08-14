@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="MovieMapper">
+	<resultMap type="study.java.helloworld.model.Movie" id="movie">
+		<result property="id" column="id"/>                          
+		<result property="searchDate" column="search_date"/>         
+		<result property="rank" column="rank"/>                      
+		<result property="rankInten" column="rank_inten"/>           
+		<result property="rankOldAnd_new" column="rank_old_and_new"/>
+		<result property="movieCd" column="movie_cd"/>               
+		<result property="movieNm" column="movie_nm"/>               
+		<result property="openDt" column="open_dt"/>                 
+		<result property="salesAmt" column="sales_amt"/>             
+		<result property="salesShare" column="sales_share"/>         
+		<result property="salesInten" column="sales_inten"/>         
+		<result property="salesChange" column="sales_change"/>       
+		<result property="salesAcc" column="sales_acc"/>             
+		<result property="audiCnt" column="audi_cnt"/>               
+		<result property="audiInten" column="audi_inten"/>           
+		<result property="audiChange" column="audi_change"/>         
+		<result property="audiAcc" column="audi_acc"/>               
+		<result property="scrnCnt" column="scrn_cnt"/>               
+		<result property="showCnt" column="show_cnt"/>               
+		<result property="regDate" column="reg_date"/>               
+		<result property="editDate" column="edit_date"/>                 
+	</resultMap>
+	<insert id="add_movie" parameterType="study.java.helloworld.model.Movie" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO movie_rank(search_date, rank, rank_inten, rank_old_and_new, movie_cd, movie_nm, open_dt, sales_amt, sales_share, sales_inten, sales_change, sales_acc, audi_cnt, audi_inten, audi_change, audi_acc, scrn_cnt, show_cnt, reg_date, edit_date) 
+		VALUES(#{searchDate}, #{rank}, #{rankInten}, #{rankOldAnd_new}, #{movieCd}, #{movieNm}, #{openDt}, #{salesAmt}, #{salesShare}, #{salesInten}, #{salesChange}, #{salesAcc}, #{audiCnt}, #{audiInten}, #{audiChange}, #{audiAcc}, #{scrnCnt}, #{showCnt}, #{regDate}, #{editDate});
+	</insert>
+	<update id="update_movie" parameterType="study.java.helloworld.model.Movie">
+		UPDATE movie_rank SET rank = #{rank}, rank_inten = #{rankInten}, rank_old_and_new = #{rankOldAnd_new}, movie_cd = #{movieCd}, open_dt = #{openDt}, sales_amt = #{salesAmt}, sales_share = #{salesShare}, sales_inten = #{salesInten}, sales_change = #{salesChange}, sales_acc = #{salesAcc}, audi_cnt = #{audiCnt}, audi_inten = #{audiInten}, audi_change = #{audiChange}, audi_acc = #{audiAcc}, scrn_cnt = #{scrnCnt}, show_cnt = #{showCnt}, edit_date = #{editDate} WHERE search_date = #{searchDate} AND movie_nm = #{movieNm};
+	</update>
+	<select id="select_daily_rank" parameterType="study.java.helloworld.model.Movie" resultMap="movie">
+		SELECT * FROM movie_rank WHERE rank = #{rank};
+	</select>
+	<!-- WHERE searchDate BETWEEN DATE_ADD(NOW(),INTERVAL - 1 WEEK ) AND NOW(); -->
+	<select id="select_week_rank" parameterType="study.java.helloworld.model.Movie" resultMap="movie">
+		SELECT * FROM movie_rank WHERE movie_nm = #{movieNm} AND search_date BETWEEN DATE_ADD(NOW(),INTERVAL - 1 WEEK) AND NOW() order by search_date asc;
+	</select>
+	<select id="select_cheack" parameterType="study.java.helloworld.model.Movie" resultMap="movie">
+		SELECT * FROM movie_rank WHERE movie_nm = #{movieNm} AND search_date = #{searchDate};
+	</select>
+	<delete id="delete_movie_by_id" parameterType="study.java.helloworld.model.Movie" >
+		DELETE FROM movie_rank WHERE id = #{id};
+	</delete>
+	<delete id="delete_movie_by_rank" parameterType="study.java.helloworld.model.Movie" >
+		DELETE FROM movie_rank WHERE rank = #{rank};
+	</delete>
+	<delete id="delete_movie_by_keyword" parameterType="study.java.helloworld.model.Movie" >
+		DELETE FROM movie_rank WHERE movie_nm LIKE CONCAT(‘%’, #{movieNm}, ‘%’);
+	</delete>
+</mapper>

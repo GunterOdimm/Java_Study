@@ -1,0 +1,15 @@
+2019-06-21 11:11:45,353 DEBUG [org.apache.ibatis.logging.LogFactory] Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+2019-06-21 11:11:45,353 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] PooledDataSource forcefully closed/removed all connections.
+2019-06-21 11:11:45,353 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] PooledDataSource forcefully closed/removed all connections.
+2019-06-21 11:11:45,353 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] PooledDataSource forcefully closed/removed all connections.
+2019-06-21 11:11:45,353 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] PooledDataSource forcefully closed/removed all connections.
+2019-06-21 11:11:45,432 DEBUG [org.apache.ibatis.transaction.jdbc.JdbcTransaction] Opening JDBC Connection
+2019-06-21 11:11:45,603 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] Created connection 577405636.
+2019-06-21 11:11:45,603 DEBUG [org.apache.ibatis.transaction.jdbc.JdbcTransaction] Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@226a82c4]
+2019-06-21 11:11:45,610 DEBUG [StudentMapper.edit_student] ==>  Preparing: UPDATE student SET grade=?, tel=? WHERE studno=?; 
+2019-06-21 11:11:45,626 DEBUG [StudentMapper.edit_student] ==> Parameters: 4(Integer), 031)966-6208(String), 20107(Integer)
+2019-06-21 11:11:45,626 DEBUG [StudentMapper.edit_student] <==    Updates: 1
+2019-06-21 11:11:45,626 DEBUG [org.apache.ibatis.transaction.jdbc.JdbcTransaction] Committing JDBC Connection [com.mysql.jdbc.JDBC4Connection@226a82c4]
+2019-06-21 11:11:45,642 DEBUG [org.apache.ibatis.transaction.jdbc.JdbcTransaction] Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@226a82c4]
+2019-06-21 11:11:45,642 DEBUG [org.apache.ibatis.transaction.jdbc.JdbcTransaction] Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@226a82c4]
+2019-06-21 11:11:45,642 DEBUG [org.apache.ibatis.datasource.pooled.PooledDataSource] Returned connection 577405636 to pool.

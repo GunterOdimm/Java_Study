@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace = "MovieRankMapper">
+
+	<resultMap id="MovieRank" type="study.java.model.movierank2">
+		
+		<result property="id" column="id" />
+		<result property="search_date" column="search_date" />
+		<result property="rank" column="rank" />
+		<result property="rank_inten" column="rank_inten" />
+		<result property="rank_old_and_new" column="rankOldAndNew" />
+		<result property="movie_cd" column="movieCd" />
+		<result property="movie_nm" column="movieNm" />
+		<result property="open_dt" column="openDt" />
+		<result property="sales_amt" column="salesAmt" />
+		<result property="sales_share" column="salesShare" />
+		<result property="sales_inten" column="salesInten" />
+		<result property="sales_change" column="salesChange" />
+		<result property="sales_acc" column="salesAcc" />
+		<result property="audi_cnt" column="audiCnt" />
+		<result property="audi_inten" column="audiInten" />
+		<result property="audi_change" column="audiChange" />
+		<result property="audi_acc" column="audiAcc" />
+		<result property="scrn_cnt" column="scrnCnt" />
+		<result property="show_cnt" column="showCnt" />
+		<result property="reg_date" column="reg_date" />
+		<result property="edit_date" column="edit_date" />
+	</resultMap>
+	
+	<insert id = "insert_movierank"
+			parameterType = "study.java.model.MovieRank"
+			useGeneratedKeys="true"
+			keyProperty="id">
+			insert into movie_rank (search_date, rank, rank_inten, rank_old_and_new, movie_cd, movie_nm, open_dt, sales_amt, sales_share, sales_inten, sales_change, sales_acc, audi_cnt, audi_inten, audi_change, audi_acc, scrn_cnt, show_cnt, reg_date, edit_date)
+			values
+			(#{search_date}, #{rank}, #{rank_inten}, #{rankOldAndNew}, #{movieCd}, #{movieNm}, #{openDt}, #{salesAmt}, #{salesShare}, #{salesInten}, #{salesChange}, #{salesAcc}, #{audiCnt}, #{audiInten}, #{audiChange}, #{audiAcc}, #{scrnCnt}, #{showCnt}, #{reg_date}, #{edit_date})
+	</insert>
+	<update id="select_update"
+			parameterType = "study.java.model.MovieRank">
+			update movie_rank set search_date=#{search_date}, rank=#{rank}, rank_inten=#{rank_inten}, rank_old_and_new=#{rankOldAndNew}, movie_cd=#{movieCd}, open_dt=#{openDt}, sales_amt=#{salesAmt}, sales_share= #{salesShare}, sales_inten=#{salesInten}, sales_change=#{salesChange}, sales_acc=#{salesAcc}, audi_cnt=#{audiCnt}, audi_inten=#{audiInten}, audi_change=#{audiChange}, audi_acc=#{audiAcc}, scrn_cnt=#{scrnCnt}, show_cnt=#{showCnt}, reg_date=#{reg_date}, edit_date=#{edit_date};
+	</update>
+	<select id="select_equal"
+			parameterType = "study.java.model.MovieRank">
+			select * from movie_rank where movie_nm=#{movieNm} and search_date=#{search_date};
+			</select>
+	 <delete id="remove_movierank"
+	 		 parameterType ="study.java.model.MovieRank">
+	 	<!--  "#{변수명}" 으로 표시된 곳에 Beans의 맴버변수가 치환된다. -->
+	 	DELETE FROM movie_rank WHERE id=#{id} or movie_nm=#{movieNm} or search_date=#{search_date};
+	 </delete>
+
+</mapper>
